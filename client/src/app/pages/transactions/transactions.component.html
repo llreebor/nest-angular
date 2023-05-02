@@ -1,0 +1,15 @@
+<div class="grid grid-cols-3 gap-4">
+	<div class="grid col-span-2 shadow p-4 rounded-sm">
+		<app-transactions-form
+			[categories]="categories"
+			[transactions]="transactions"></app-transactions-form>
+	</div>
+	<div class="grid">
+		<app-categories [categories]="categories"></app-categories>
+	</div>
+</div>
+
+<div>
+	<app-transactions-table
+		[transactions]="transactions"></app-transactions-table>
+</div>

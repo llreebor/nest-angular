@@ -1,0 +1,41 @@
+<header class="bg-blue-600 p-2 grid items-center grid-cols-3 text-white/50">
+	<a routerLink="/">
+		<img src="assets/logo.svg" alt="logo" />
+	</a>
+	<div>
+		<nav *ngIf="authService.isAuth | async">
+			<ul class="flex items-center gap-10 justify-center">
+				<li>
+					<a
+						routerLink="/"
+						routerLinkActive="text-white/100"
+						[routerLinkActiveOptions]="{ exact: true }"
+						>Home</a
+					>
+				</li>
+				<li>
+					<a
+						routerLink="/transactions"
+						routerLinkActive="text-white/100">
+						Transactions</a
+					>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<div class="flex items-center justify-end gap-4">
+		<a
+			routerLinkActive="text-white/100"
+			routerLink="registration"
+			class="text-sm hover:text-white">
+			Sign In / Log In
+		</a>
+		<button
+			(click)="onLogout()"
+			*ngIf="authService.isAuth | async"
+			class="btn btn-red">
+			Log Out
+		</button>
+	</div>
+</header>

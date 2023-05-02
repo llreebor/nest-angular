@@ -1,0 +1,6 @@
+<div class="border p-5 w-1/3 mx-auto text-center">
+	<p *ngIf="authService.isAuth | async; else notAuth">{{ email }}</p>
+	<ng-template #notAuth>
+		<div>To continue using the site, you need to log in.</div>
+	</ng-template>
+</div>

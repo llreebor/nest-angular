@@ -1,0 +1,73 @@
+<form #myForm="ngForm" class="grid gap-2" (ngSubmit)="onSubmit(myForm)">
+	<label class="grid gap-1">
+		<span>Title</span>
+		<input
+			class="input"
+			type="text"
+			placeholder="Title..."
+			[(ngModel)]="title"
+			required
+			name="title" />
+	</label>
+	<label class="grid gap-1">
+		<span>Amount</span>
+		<input
+			class="input"
+			type="text"
+			placeholder="Amount..."
+			[(ngModel)]="amount"
+			required
+			name="amount" />
+	</label>
+
+	<label *ngIf="categories.length > 0; else elseElem" class="grid gap-1">
+		<span>Category</span>
+		<select required class="input" [(ngModel)]="category" name="category">
+			<option
+				*ngFor="let category of categories"
+				value="{{ category.id | number }}">
+				{{ category.title }}
+			</option>
+		</select>
+	</label>
+
+	<ng-template #elseElem>
+		<p class="text-xs text-red-600">
+			* to continue you need to create categories first.
+		</p>
+	</ng-template>
+
+	<div class="flex items-center gap-4">
+		<label class="flex cursor-pointer items-center gap-2">
+			<input
+				type="radio"
+				name="type"
+				value="income"
+				[(ngModel)]="type"
+				name="type"
+				required
+				class="form-radio text-blue-600" />
+			<span>Income</span>
+		</label>
+		<label class="flex cursor-pointer items-center gap-2">
+			<input
+				type="radio"
+				name="type"
+				[(ngModel)]="type"
+				name="type"
+				value="expense"
+				required
+				class="form-radio text-blue-600" />
+			<span>Expense</span>
+		</label>
+	</div>
+
+	<div class="flex gap-2">
+		<button
+			[disabled]="!myForm.valid"
+			type="submit"
+			class="btn btn-green max-w-fit disabled:bg-gray-400 disabled:cursor-not-allowed">
+			Submit
+		</button>
+	</div>
+</form>
